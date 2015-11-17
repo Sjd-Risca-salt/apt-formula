@@ -1,4 +1,4 @@
-{% set cfg_repo = pillar.get('apt_repos', {}) %}
+{% set cfg_repos = pillar.get('apt_repos', {}) %}
 
 {% for repo in cfg_repos %}
 repository-{{ repo }}:
@@ -18,7 +18,7 @@ repository-{{ repo }}:
         sources: False
         enable: True
     - context:
-{% for key, value in cfg_repo.repo.items() %}
+{% for key, value in cfg_repos.repo.items() %}
         {{ key }}: {{ value }}
 {% endfor %}
 {% endfor %}

@@ -1,4 +1,4 @@
-{% set cfg_repo = pillar_get('apt_repos', {}) %}
+{% set cfg_repo = pillar.get('apt_repos', {}) %}
 
 {% for repo in cfg_repos %}
 repository-{{ repo }}:

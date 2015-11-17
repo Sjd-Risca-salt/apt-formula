@@ -18,7 +18,7 @@ repository-{{ repo }}:
         sources: False
         enable: True
     - context:
-{% for key, value in cfg_repos.repo.items() %}
+{% for key, value in cfg_repos[repo].items() %}
         {{ key }}: {{ value }}
 {% endfor %}
 {% endfor %}

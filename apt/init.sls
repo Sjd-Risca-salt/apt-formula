@@ -1,13 +1,5 @@
-{% import_yaml "apt/defaults.yaml" as default_settings %}
-
 {% for repo in apt_repos %}
-{% set parameter = salt['pillar.get'](
-    'apt_repos':repo,
-    default=default_settings.apt_defaults,
-    merge=True
-  )
-%}
-
+{% set parameter as apt_repos[repo] %}
 repository-{{ repo }}:
   file.managed:
     - name: /etc/apt/source.list.d/{{ repo }}.list

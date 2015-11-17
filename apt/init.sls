@@ -1,5 +1,6 @@
-{% for repo in apt_repos %}
-{% set parameter = apt_repos[repo] %}
+{% set cfg_repo = pillar_get('apt_repos', {}) %}
+
+{% for repo in cfg_repos %}
 repository-{{ repo }}:
   file.managed:
     - name: /etc/apt/source.list.d/{{ repo }}.list
@@ -10,12 +11,16 @@ repository-{{ repo }}:
     - mode: 644
     - order: 1
     - defaults:
-        comment: parameter[comment]
-        uri: parameter[uri]
-        codename: parameter[codename]
-        components: parameter[components]
-        sources: parameter[sources]
-        enable: parameter[enable]
+        comment: ''
+        uri: http://ftp.de.debian.org/debian
+        codename: jessie
+        components: main
+        sources: False
+        enable: True
+    - context:
+{% for key, value in cfg_repo.repo.items() %}
+        {{ key }}: {{ value }}
+{% endfor %}
 {% endfor %}
 
 update-repository:

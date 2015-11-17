@@ -1,0 +1,16 @@
+apt_repos:
+  - main:
+    comment: "main repository"
+    uri: http://ftp.de.debian.org/debian
+    codename: wheezy
+    components: main
+    sources: False
+    enable: True
+  - backports:
+    comment: "backports"
+    uri: http://ftp.de.debian.org/debian
+    codename: wheezy-backports
+    components: main contrib
+    sources: False
+    enable: False
+    

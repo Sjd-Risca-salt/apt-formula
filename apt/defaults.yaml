@@ -1,0 +1,7 @@
+apt_defaults:
+  comment: ''
+  uri: http://ftp.de.debian.org/debian
+  codename: jessie
+  components: main
+  sources: False
+  enable: True

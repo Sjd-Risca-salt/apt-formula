@@ -1,5 +1,5 @@
 {% for repo in apt_repos %}
-{% set parameter as apt_repos[repo] %}
+{% set parameter = apt_repos[repo] %}
 repository-{{ repo }}:
   file.managed:
     - name: /etc/apt/source.list.d/{{ repo }}.list

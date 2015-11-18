@@ -1,0 +1,5 @@
+{{ comment }}
+{% if enable -%}# {%- endif -%}deb {{ uri }} {{ codename }} {{ components }}
+{%- if sources %}
+{%- if enable -%}# {%- endif -%}deb-src {{ uri }} {{ codename }} {{ components }}
+{%- endif -%}

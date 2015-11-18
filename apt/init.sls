@@ -1,6 +1,7 @@
 {% set cfg_repos = pillar.get('apt_repos', {}) %}
 
-{% for repo in cfg_repos %}
+{%- for repository in cfg_repos %}
+  {%- for repo in repository %}
 repository-{{ repo }}:
   file.managed:
     - name: /etc/apt/source.list.d/{{ repo }}.list
@@ -18,10 +19,11 @@ repository-{{ repo }}:
         sources: False
         enable: True
     - context:
-{% for key, value in cfg_repos[repo].items() %}
-        {{ key }}: {{ value }}
-{% endfor %}
-{% endfor %}
+    {%- for parameter in repository[repo] %}
+        {{ parameter }}: {{ repository[repo][parameter] }}
+    {%- endfor %}
+  {%- endfor %}
+{%- endfor %}
 
 update-repository:
   cmd.wait:

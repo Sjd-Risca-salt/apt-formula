@@ -1,5 +1,0 @@
-{{ comment }}
-{%- if enable -%}# {%- endif -%}deb {{ url }} {{ target }} {{ comp }}
-{%- if source is True %}
-{%- if enable -%}# {%- endif -%}deb-src {{ url }} {{ target }} {{ comp }}
-{%- endif -%}

@@ -4,7 +4,7 @@
   {%- for repo in repository %}
 repository-{{ repo }}:
   file.managed:
-    - name: /etc/apt/source.list.d/{{ repo }}.list
+    - name: /etc/apt/sources.list.d/{{ repo }}.list
     - source: salt://apt/files/sources.list
     - template: jinja
     - user: root

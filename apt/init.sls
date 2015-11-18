@@ -33,7 +33,7 @@ update-repository:
       - file: /etc/apt/sources.list.d/*
     - order: 2
     
-{%- if pillar.get('apt_option:clean_sources_list', False) %}
+{%- if salt[pillar.get]('apt_option:clean_sources_list', False) %}
 repository-clean-sourceslist:
   file.absent:
     - name: /etc/apt/sources.list

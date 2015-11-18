@@ -30,6 +30,6 @@ update-repository:
     - name: aptitude update
     - cwd: /
     - watch:
-      - file: /etc/apt/source.list.d/*
+      - file: /etc/apt/sources.list.d/*
     - order: 2
     

@@ -14,3 +14,5 @@ apt_repos:
     sources: False
     enable: False
     
+apt_option:
+  - clean_sources_list: False

@@ -16,6 +16,7 @@ apt_repos:
     
 apt_option:
   - clean_sources_list: False
+  - clean_preferences: True
 
 apt_pinning:
   default_target:
@@ -31,5 +32,3 @@ apt_pinning:
       Pin: release o=saltstack.com
       Pin-Priority: 1001
       comment: required by saltstack
-
-test: True

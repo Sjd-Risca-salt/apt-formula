@@ -1,0 +1,10 @@
+{%- for pin in salt.get('apt_pinning:{{ file }}') %}
+
+{%- if pin['comment'] is defined %}
+# {{ pin['comment'] }}
+{%- endif %}
+Package: {{ pin['Package'] }}
+Pin: {{ pin['Pin'] }}
+Pin-Priority: {{ pin['Pin-Priority'] }}
+
+{%- endfor %}

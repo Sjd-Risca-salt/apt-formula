@@ -39,3 +39,25 @@ repository-clean-sourceslist:
     - name: /etc/apt/sources.list
     - order: 1
 {%- endif %}
+{%- if salt['pillar.get']('apt_option:clean_preferences', False) %}
+repository-clean-preferences:
+  file.absent:
+    - name: /etc/apt/preferences
+    - order: 1
+{%- endif %}
+
+{%- if salt['pillar.get']('apt_pinning', False) %}
+{%- for file in pillar.get('apt_pinning') %}
+repository_pinning-{{ file }}:
+  file.managed:
+    - name: /etc/apt/preferences.d/{{ file }}
+    - source: salt://apt/files/preferences
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 644
+    - order: 1
+    - defaults:
+        file: {{ file }}
+{% endfor %}
+{%- endif %}

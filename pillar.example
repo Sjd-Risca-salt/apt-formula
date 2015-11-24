@@ -16,3 +16,20 @@ apt_repos:
     
 apt_option:
   - clean_sources_list: False
+
+apt_pinning:
+  default_target:
+    - Package: '*'
+      Pin: release n=wheeze
+      Pin-Priority: 910
+      comment: main repository target
+  salt:
+    - Package: 'salt*'
+      Pin: release o=saltstack.com
+      Pin-Priority: 1001
+    - Package: python-requests
+      Pin: release o=saltstack.com
+      Pin-Priority: 1001
+      comment: required by saltstack
+
+test: True

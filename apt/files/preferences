@@ -1,7 +1,7 @@
 {%- set pillar_path = ["apt_pinning", file ] %}
-
-{% for pin in salt['pillar.get'](pillar_path|join(':')) %}
+{%- for pin in salt['pillar.get'](pillar_path|join(':')) %}
 {%-     if pin['comment'] is defined %}
+
 # {{ pin['comment'] }}
 {%-     endif %}
 Package: {{ pin['Package'] }}

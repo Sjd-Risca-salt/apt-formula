@@ -1,5 +1,5 @@
 apt_pinning:{{ file }}
-{%- set pillar_path = ["apt_pinning", "{{ file }}"] %}
+{%- set pillar_path = ["apt_pinning", {{ file }}] %}
 {{ pillar_path|join(':') }}
 {%- for parameter in salt['pillar.get'](pillar_path|join(':')) %}
 {%-   for pin in parameter %}

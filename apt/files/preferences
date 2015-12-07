@@ -1,5 +1,5 @@
-{%- set pillar_path = ["apt_pinning", {{ file }}] %}
-{%- for parameter in salt.get(pillar_path|join(':')) %}
+{%- set pillar_path = ["apt_pinning", "{{ file }}"] %}
+{%- for parameter in salt['pillar.get'](pillar_path|join(':')) %}
 {%-   for pin in parameter %}
 {%-     if pin['comment'] is defined %}
 # {{ pin['comment'] }}

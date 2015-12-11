@@ -4,4 +4,4 @@ apt_defaults:
   codename: jessie
   components: main
   sources: False
-  enable: True
+  enabled: True

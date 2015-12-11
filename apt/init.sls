@@ -17,7 +17,7 @@ repository-{{ repo }}:
         codename: jessie
         components: main
         sources: False
-        enable: True
+        enabled: True
     - context:
     {%- for parameter in repository[repo] %}
         {{ parameter }}: {{ repository[repo][parameter] }}

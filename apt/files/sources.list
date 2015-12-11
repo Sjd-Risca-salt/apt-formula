@@ -1,5 +1,5 @@
 {{ comment }}
-{% if not enable -%}# {%- endif -%}deb {{ uri }} {{ codename }} {{ components }}
+{% if not enabled -%}# {%- endif -%}deb {{ uri }} {{ codename }} {{ components }}
 {%- if sources %}
-{%- if not enable -%}# {%- endif -%}deb-src {{ uri }} {{ codename }} {{ components }}
+{% if not enabled -%}# {%- endif -%}deb-src {{ uri }} {{ codename }} {{ components }}
 {%- endif -%}

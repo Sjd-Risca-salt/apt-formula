@@ -5,14 +5,14 @@ apt_repos:
       codename: wheezy
       components: main
       sources: False
-      enable: True
+      enabled: True
   - backports:
       comment: "backports"
       uri: http://ftp.de.debian.org/debian
       codename: wheezy-backports
       components: main contrib
       sources: False
-      enable: False
+      enabled: False
     
 apt_option:
   - clean_sources_list: False

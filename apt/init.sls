@@ -22,8 +22,8 @@ repository-{{ repo }}:
     {%- for parameter in repository[repo] %}
         {{ parameter }}: {{ repository[repo][parameter] }}
     {%- endfor %}
-    {% if repository[repo][key] is defined %}
-    {% set KEY = repository[repo][key] %}
+    {% if repository[repo]['key'] is defined %}
+    {% set KEY = repository[repo]['key'] %}
 repository-{{ repo }}-key:
   cmd.run:
     - names:

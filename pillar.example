@@ -13,6 +13,7 @@ apt_repos:
       components: main contrib
       sources: False
       enabled: False
+      key: 0E08A149DE57BFBE       # inser the fingerprint to be added
     
 apt_option:
   - clean_sources_list: False

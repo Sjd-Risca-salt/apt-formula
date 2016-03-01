@@ -22,6 +22,14 @@ repository-{{ repo }}:
     {%- for parameter in repository[repo] %}
         {{ parameter }}: {{ repository[repo][parameter] }}
     {%- endfor %}
+    {% if repository[repo][key] is defined %}
+    {% set KEY = repository[repo][key] %}
+repository-{{ repo }}-key:
+  cmd.run:
+    - names:
+      - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys {{ KEY }}
+    - unless: apt-key adv --list-public-keys --with-fingerprint --with-colons | grep {{ KEY }}
+    {% endif %}
   {%- endfor %}
 {%- endfor %}
 

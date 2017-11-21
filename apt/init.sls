@@ -35,7 +35,7 @@ repository-{{ repo }}-key:
 
 update-repository:
   cmd.wait:
-    - name: aptitude update
+    - name: apt update
     - cwd: /
     - watch:
       - file: /etc/apt/sources.list.d/*

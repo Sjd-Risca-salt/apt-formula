@@ -1,8 +1,10 @@
+#!stateconf yaml . jinja
+
 {% set cfg_repos = pillar.get('apt_repos', {}) %}
 
 {%- for repository in cfg_repos %}
   {%- for repo in repository %}
-repository-{{ repo }}:
+.repository-{{ repo }}:
   file.managed:
     - name: /etc/apt/sources.list.d/{{ repo }}.list
     - source: salt://apt/files/sources.list
@@ -24,7 +26,7 @@ repository-{{ repo }}:
     {%- endfor %}
     {% if repository[repo]['key'] is defined %}
     {% set KEY = repository[repo]['key'] %}
-repository-{{ repo }}-key:
+.repository-{{ repo }}-key:
   cmd.run:
     - names:
       - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys {{ KEY }}
@@ -33,22 +35,22 @@ repository-{{ repo }}-key:
   {%- endfor %}
 {%- endfor %}
 
-update-repository:
+.update-repository:
   cmd.wait:
     - name: apt update
     - cwd: /
     - watch:
       - file: /etc/apt/sources.list.d/*
     - order: 2
-    
+
 {%- if salt['pillar.get']('apt_option:clean_sources_list', False) %}
-repository-clean-sourceslist:
+.clean-sourceslist:
   file.absent:
     - name: /etc/apt/sources.list
     - order: 1
 {%- endif %}
 {%- if salt['pillar.get']('apt_option:clean_preferences', False) %}
-repository-clean-preferences:
+.clean-preferences:
   file.absent:
     - name: /etc/apt/preferences
     - order: 1
@@ -56,7 +58,7 @@ repository-clean-preferences:
 
 {%- if salt['pillar.get']('apt_pinning', False) %}
 {%- for file in pillar.get('apt_pinning') %}
-repository_pinning-{{ file }}:
+.pinning-{{ file }}:
   file.managed:
     - name: /etc/apt/preferences.d/{{ file }}
     - source: salt://apt/files/preferences

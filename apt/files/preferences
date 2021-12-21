@@ -1,3 +1,5 @@
+#!stateconf yaml . jinja
+
 {%- set pillar_path = ["apt_pinning", file ] %}
 {%- for pin in salt['pillar.get'](pillar_path|join(':')) %}
 
